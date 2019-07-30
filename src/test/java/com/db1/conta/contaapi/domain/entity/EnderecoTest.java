@@ -11,7 +11,7 @@ public class EnderecoTest {
 		String mensagem = null;
 		Cidade cidade = Mockito.mock(Cidade.class);
 		try {
-			Endereco endereco = new Endereco(null, "log", "num", cidade, TipoEndereco.Residencial, "Comp");
+			Endereco endereco = new Endereco(null, "log", "num", cidade, "87010055", TipoEndereco.Residencial, "Comp");
 		} catch (Exception e) {
 			mensagem = e.getMessage();
 		}
@@ -25,7 +25,7 @@ public class EnderecoTest {
 		Cliente cliente = Mockito.mock(Cliente.class);
 		Cidade cidade = Mockito.mock(Cidade.class);
 		try {
-			Endereco endereco = new Endereco(cliente, null, "num", cidade, TipoEndereco.Residencial, "Comp");
+			Endereco endereco = new Endereco(cliente, null, "num", cidade, "87010055", TipoEndereco.Residencial, "Comp");
 		} catch (Exception e) {
 			mensagem = e.getMessage();
 		}
@@ -39,7 +39,7 @@ public class EnderecoTest {
 		Cliente cliente = Mockito.mock(Cliente.class);
 		Cidade cidade = Mockito.mock(Cidade.class);
 		try {
-			Endereco endereco = new Endereco(cliente, "log", null, cidade, TipoEndereco.Residencial, "Comp");
+			Endereco endereco = new Endereco(cliente, "log", null, cidade, "87010055", TipoEndereco.Residencial, "Comp");
 		} catch (Exception e) {
 			mensagem = e.getMessage();
 		}
@@ -52,7 +52,7 @@ public class EnderecoTest {
 		String mensagem = null;
 		Cliente cliente = Mockito.mock(Cliente.class);
 		try {
-			Endereco endereco = new Endereco(cliente, "log", "num", null, TipoEndereco.Residencial, "Comp");
+			Endereco endereco = new Endereco(cliente, "log", "num", null, "87010055", TipoEndereco.Residencial, "Comp");
 		} catch (Exception e) {
 			mensagem = e.getMessage();
 		}
@@ -61,12 +61,26 @@ public class EnderecoTest {
 	}
 	
 	@Test
+	public void deveRetornarCepObrigatorio() {
+		String mensagem = null;
+		Cliente cliente = Mockito.mock(Cliente.class);
+		Cidade cidade = Mockito.mock(Cidade.class);
+		try {
+			Endereco endereco = new Endereco(cliente, "log", "num", cidade, null, TipoEndereco.Residencial, "Comp");
+		} catch (Exception e) {
+			mensagem = e.getMessage();
+		}
+		
+		Assert.assertEquals("CEP é obrigatório", mensagem);
+	}
+	
+	@Test
 	public void deveRetornarTipoEnderecoObrigatorio() {
 		String mensagem = null;
 		Cliente cliente = Mockito.mock(Cliente.class);
 		Cidade cidade = Mockito.mock(Cidade.class);
 		try {
-			Endereco endereco = new Endereco(cliente, "log", "num", cidade, null, "Comp");
+			Endereco endereco = new Endereco(cliente, "log", "num", cidade, "87010055", null, "Comp");
 		} catch (Exception e) {
 			mensagem = e.getMessage();
 		}
@@ -80,7 +94,7 @@ public class EnderecoTest {
 		Cliente cliente = Mockito.mock(Cliente.class);
 		Cidade cidade = Mockito.mock(Cidade.class);
 		try {
-			Endereco endereco = new Endereco(cliente, "log", "num", cidade, TipoEndereco.Residencial, null);
+			Endereco endereco = new Endereco(cliente, "log", "num", cidade, "87010055", TipoEndereco.Residencial, null);
 		} catch (Exception e) {
 			mensagem = e.getMessage();
 		}
@@ -93,14 +107,21 @@ public class EnderecoTest {
 		String mensagem = null;
 		Cliente cliente = Mockito.mock(Cliente.class);
 		Cidade cidade = Mockito.mock(Cidade.class);
+		Endereco endereco = null;
 		try {
-			Endereco endereco = new Endereco(cliente, "log", "num", cidade, TipoEndereco.Cobrança, "comp");
+			endereco = new Endereco(cliente, "log", "num", cidade, "87010055", TipoEndereco.Cobrança, "comp");
 		} catch (Exception e) {
 			mensagem = e.getMessage();
 		}
 		
 		Assert.assertNull(mensagem);
-//		Assert.assertEquals(cliente, );
+		Assert.assertEquals(cliente, endereco.getCliente());
+		Assert.assertEquals("log", endereco.getLogradouro());
+		Assert.assertEquals("num", endereco.getNumero());
+		Assert.assertEquals(cidade, endereco.getCidade());
+		Assert.assertEquals("87010055", endereco.getCep());
+		Assert.assertEquals(TipoEndereco.Cobrança, endereco.getTipoEndereco());
+		Assert.assertEquals("comp", endereco.getComplemento());
 	}
 	
 }

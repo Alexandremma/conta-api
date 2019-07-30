@@ -14,15 +14,18 @@ public class Endereco {
 	
 	private Cidade cidade;
 	
+	private String cep;
+	
 	private TipoEndereco tipoEndereco;
 	
 	private String complemento;
 	
-	public Endereco(Cliente cliente, String logradouro, String numero, Cidade cidade, TipoEndereco tipoEndereco, String complemento) {
+	public Endereco(Cliente cliente, String logradouro, String numero, Cidade cidade, String cep, TipoEndereco tipoEndereco, String complemento) {
 		Assert.notNull(cliente, "Cliente é obrigatório");
 		Assert.hasText(logradouro, "Logradouro é obrigatório");
 		Assert.hasText(numero, "Número é obrigatório");
 		Assert.notNull(cidade, "Cidade é obrigatória");
+		Assert.hasText(cep, "CEP é obrigatório");
 		Assert.notNull(tipoEndereco, "Tipo do endereço é obrigatório");
 		Assert.hasText(complemento, "Complemento é obrigatório");
 	
@@ -30,6 +33,7 @@ public class Endereco {
 		this.logradouro = logradouro;
 		this.numero = numero;
 		this.cidade = cidade;
+		this.cep = cep;
 		this.tipoEndereco = tipoEndereco;
 		this.complemento = complemento;
 	}
@@ -52,6 +56,10 @@ public class Endereco {
 	
 	public Cidade getCidade() {
 		return cidade;
+	}
+	
+	public String getCep() {
+		return cep;
 	}
 	
 	public TipoEndereco getTipoEndereco() {

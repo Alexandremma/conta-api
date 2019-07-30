@@ -18,8 +18,8 @@ public class Cliente {
 	
 	public Cliente(String nome, List<Endereco> endereco, List<Conta> conta, String cpf) {
 		Assert.hasText(nome, "Nome é obrigatório");
-		Assert.notEmpty(endereco, "Endereço é obrigatório");
-		Assert.notEmpty(conta, "Conta é obrigatória");
+		Assert.notNull(endereco, "Endereço é obrigatório");
+		Assert.notNull(conta, "Conta é obrigatória");
 		Assert.hasText(cpf, "CPF é obrigatório");
 		
 		this.nome = nome;
