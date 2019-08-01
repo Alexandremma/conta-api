@@ -16,15 +16,11 @@ public class Cliente {
 	
 	private String cpf;
 	
-	public Cliente(String nome, List<Endereco> endereco, List<Conta> conta, String cpf) {
+	public Cliente(String nome, String cpf) {
 		Assert.hasText(nome, "Nome é obrigatório");
-		Assert.notNull(endereco, "Endereço é obrigatório");
-		Assert.notNull(conta, "Conta é obrigatória");
 		Assert.hasText(cpf, "CPF é obrigatório");
 		
 		this.nome = nome;
-		this.endereco = endereco;
-		this.conta = conta;
 		this.cpf = cpf;
 	}
 	

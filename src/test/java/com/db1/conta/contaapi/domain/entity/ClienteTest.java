@@ -10,11 +10,9 @@ public class ClienteTest {
 	@Test
 	public void deveRetornarNomeObrigatorio() {
 		String mensagem = null;
-		List<Endereco> endereco = new ArrayList<Endereco>(); 
-		List<Conta> conta = new ArrayList<Conta>();
 		Cliente cliente = null;
 		try {
-			cliente = new Cliente(null, endereco, conta, "10849393981");
+			cliente = new Cliente(null, "10849393981");
 		} catch (Exception e) {
 			mensagem = e.getMessage();
 		}
@@ -23,41 +21,11 @@ public class ClienteTest {
 	}
 	
 	@Test
-	public void deveRetornarEnderecoObrigatorio() {
-		String mensagem = null; 
-		List<Conta> conta = new ArrayList<Conta>();
-		Cliente cliente = null;
-		try {
-			cliente = new Cliente("Nome", null, conta, "10849393981");
-		} catch (Exception e) {
-			mensagem = e.getMessage();
-		}
-		
-		Assert.assertEquals("Endereço é obrigatório", mensagem);
-	}
-	
-	@Test
-	public void deveRetornarContaObrigatoria() {
-		String mensagem = null;
-		List<Endereco> endereco = new ArrayList<Endereco>(); 
-		Cliente cliente = null;
-		try {
-			cliente = new Cliente("Nome", endereco, null, "10849393981");
-		} catch (Exception e) {
-			mensagem = e.getMessage();
-		}
-		
-		Assert.assertEquals("Conta é obrigatória", mensagem);
-	}
-	
-	@Test
 	public void deveRetornarCpfObrigatorio() {
 		String mensagem = null;
-		List<Endereco> endereco = new ArrayList<Endereco>();
-		List<Conta> conta = new ArrayList<Conta>();
 		Cliente cliente = null;
 		try {
-			cliente = new Cliente("Nome", endereco, conta, null);
+			cliente = new Cliente("Nome", null);
 		} catch (Exception e) {
 			mensagem = e.getMessage();
 		}
@@ -68,19 +36,15 @@ public class ClienteTest {
 	@Test
 	public void deveCriarUmaInstanciaDeCliente() {
 		String mensagem = null;
-		List<Endereco> endereco = new ArrayList<Endereco>();
-		List<Conta> conta = new ArrayList<Conta>();
 		Cliente cliente = null;
 		try {
-			cliente = new Cliente("Nome", endereco, conta, "10849393981");
+			cliente = new Cliente("Nome", "10849393981");
 		} catch (Exception e) {
 			mensagem = e.getMessage();
 		}
 		
 		Assert.assertNull(mensagem);
 		Assert.assertEquals("Nome", cliente.getNome());
-		Assert.assertEquals(endereco, cliente.getEndereco());
-		Assert.assertEquals(conta, cliente.getConta());
 		Assert.assertEquals("10849393981", cliente.getCpf());
 	}
 	
