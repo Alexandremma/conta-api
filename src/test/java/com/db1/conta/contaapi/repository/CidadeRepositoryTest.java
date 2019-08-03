@@ -39,10 +39,10 @@ public class CidadeRepositoryTest {
 	
 	@Test
 	public void deveBuscarCidadePorNome() {
-		Cidade cidade = new Cidade("Maringá", Estado.PR);
+		Cidade cidade = new Cidade("Campo Grande", Estado.PR);
 		cidadeRepository.save(cidade);
 		
-		Cidade cidadeBuscadaPorNome = cidadeRepository.findByNome("Maringá");
+		Cidade cidadeBuscadaPorNome = cidadeRepository.findByNome("Campo Grande");
 		
 		Assert.assertNotNull(cidadeBuscadaPorNome);
 		Assert.assertEquals(cidade.getNome(), cidadeBuscadaPorNome.getNome());
@@ -51,7 +51,7 @@ public class CidadeRepositoryTest {
 	
 	@Test
 	public void deveRetornarCidadesPorEstado() {
-		Cidade cidade = new Cidade("Maringá", Estado.PR);
+		Cidade cidade = new Cidade("Sarandi", Estado.PR);
 		cidadeRepository.save(cidade);
 		
 		List<Cidade> cidades = cidadeRepository.findByEstado(Estado.PR);

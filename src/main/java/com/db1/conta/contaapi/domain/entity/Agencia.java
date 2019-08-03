@@ -2,7 +2,6 @@ package com.db1.conta.contaapi.domain.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,14 +19,14 @@ public class Agencia {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "numero", length = 4, nullable = false, unique = true)
+	@Column(name = "numero", length = 20, nullable = false, unique = true)
 	private String numero;
 	
 	@Column(name = "digito", length = 1, nullable = false)
 	private String digito;
 	
+	@ManyToOne
 	@JoinColumn(name = "cidade_id", nullable = false)
-	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	private Cidade cidade;
 	
 	protected Agencia() {}

@@ -12,7 +12,7 @@ public class ClienteTest {
 		String mensagem = null;
 		Cliente cliente = null;
 		try {
-			cliente = new Cliente(null, "10849393981");
+			cliente = new Cliente(null, "99999999999");
 		} catch (Exception e) {
 			mensagem = e.getMessage();
 		}
@@ -34,18 +34,31 @@ public class ClienteTest {
 	}
 	
 	@Test
+	public void deveRetornarCpfInvalido() {
+		String mensagem = null;
+		Cliente cliente = null;
+		try {
+			cliente = new Cliente("Nome", "999999999912");
+		} catch (Exception e) {
+			mensagem = e.getMessage();
+		}
+		
+		Assert.assertEquals("CPF inválido", mensagem);
+	}
+	
+	@Test
 	public void deveCriarUmaInstanciaDeCliente() {
 		String mensagem = null;
 		Cliente cliente = null;
 		try {
-			cliente = new Cliente("Nome", "10849393981");
+			cliente = new Cliente("Nome", "99999999999");
 		} catch (Exception e) {
 			mensagem = e.getMessage();
 		}
 		
 		Assert.assertNull(mensagem);
 		Assert.assertEquals("Nome", cliente.getNome());
-		Assert.assertEquals("10849393981", cliente.getCpf());
+		Assert.assertEquals("99999999999", cliente.getCpf());
 	}
 	
 }
