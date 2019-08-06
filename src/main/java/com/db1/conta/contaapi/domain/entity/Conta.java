@@ -73,6 +73,14 @@ public class Conta {
 		this.historicoDaConta.add(new Historico(HistoricoTipo.Entrada, valor, this.saldo));
 	}
 	
+	public void sacar(Double valor) {
+		Verificadora.verificaValorMaiorQueZero(valor, "Valor a ser sacado deve ser maior que zero");
+		Verificadora.verificaValorMaiorQueZero(this.saldo - valor, "Saldo insuficiente");
+		
+		this.saldo -= valor;
+		this.historicoDaConta.add(new Historico(HistoricoTipo.Saida, valor, this.saldo));
+	}
+	
 	public Long getId() {
 		return id;
 	}
